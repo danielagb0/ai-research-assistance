@@ -2,8 +2,6 @@ streamlit
 openai
 langchain
 pandas
-tqdm
-sentence-transformers
-torch
-faiss-cpu
 python-dotenv
+faiss-cpu
+sentence-transformers
