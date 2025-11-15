@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from openai import OpenAI
+from groq import Groq
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.llms import OpenAI as LCOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter

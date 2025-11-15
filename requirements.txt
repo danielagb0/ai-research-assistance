@@ -5,3 +5,5 @@ pandas
 python-dotenv
 faiss-cpu
 sentence-transformers
+groq
+
