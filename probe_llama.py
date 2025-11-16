@@ -6,13 +6,13 @@ def main():
     client = Groq(api_key=settings.api_key)
 
     response = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.1-8b-instant",
         messages=[
-            {"role": "user", "content": "Decime en una frase corta que este proyecto funciona correctamente."}
+            {"role": "user", "content": "Confirmá en una frase que el proyecto está funcionando."}
         ]
     )
-
-    print(response.choices[0].message["content"])
+    print("Prompt enviado")
+    print(response.choices[0].message.content)
 
 if __name__ == "__main__":
     main()

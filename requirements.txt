@@ -1,9 +1,5 @@
-streamlit
-openai
-langchain
-pandas
-python-dotenv
-faiss-cpu
-sentence-transformers
 groq
-
+python-dotenv
+pydantic
+fastapi
+uvicorn
