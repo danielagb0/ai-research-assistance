@@ -1,31 +1,45 @@
+import logging
 from groq import Groq
 from config import load_settings
+
+logger = logging.getLogger("research")
 
 settings = load_settings()
 client = Groq(api_key=settings.api_key)
 
 MODEL = "llama-3.1-8b-instant"
 
+
 def analyze_question(question: str) -> str:
     """
-    Limpia y normaliza la pregunta del usuario.
-    Esta función se irá expandiendo luego (detección de intención, clasificación, etc.)
+    Clean and validate the user question.
     """
     q = question.strip()
+
     if not q:
-        raise ValueError("La pregunta está vacía.")
+        raise ValueError("Input question is empty.")
+
+    logger.info(f"Normalized question: {q}")
     return q
+
 
 def ask_llama(question: str) -> str:
     """
-    Envía la pregunta al modelo Llama en Groq y devuelve la respuesta limpia.
+    Send the user question to the Llama model through Groq API
+    and return the generated text.
     """
+    logger.info("Sending request to Llama model...")
+
     response = client.chat.completions.create(
         model=MODEL,
         messages=[
-            {"role": "system", "content": "Sos un asistente de investigación claro y directo."},
+            {"role": "system", "content": "You are a clear and concise research assistant."},
             {"role": "user", "content": question}
         ]
     )
 
-    return response.choices[0].message["content"]
+    # Correct access: message is an object, not a dict
+    answer = response.choices[0].message.content
+
+    logger.info("Model response received.")
+    return answer
