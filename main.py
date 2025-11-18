@@ -1,18 +1,20 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-from research import analyze_question, ask_llama
+import uvicorn
+from research_routes import router as research_router
 
 app = FastAPI()
 
-class AskRequest(BaseModel):
-    question: str
+# Register research endpoints
+app.include_router(research_router)
 
-@app.get("/")
-def root():
+@app.get("/health")
+def health():
     return {"status": "ok"}
 
-@app.post("/ask")
-def ask(request: AskRequest):
-    question = analyze_question(request.question)
-    answer = ask_llama(question)
-    return {"answer": answer}
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True
+    )
