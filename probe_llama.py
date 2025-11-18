@@ -1,5 +1,5 @@
 from groq import Groq
-from config import load_settings
+from app.config import load_settings
 
 def main():
     settings = load_settings()

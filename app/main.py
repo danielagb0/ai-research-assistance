@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from research_routes import router as research_router
+from app.routes.research_routes import router as research_router
 
 app = FastAPI()
 

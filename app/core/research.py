@@ -1,6 +1,6 @@
 import logging
 from groq import Groq
-from config import load_settings
+from app.config import load_settings
 
 logger = logging.getLogger("research")
 
